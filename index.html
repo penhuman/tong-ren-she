@@ -36,7 +36,6 @@
         <a href="#process" class="nav-item">治喪流程</a>
         <a href="#coffeebar" class="nav-item">追思咖啡吧</a>
         <a href="#estimator" class="nav-item">溫馨試算</a>
-        <a href="#blessings" class="nav-item">思念留言牆</a>
         <a href="#faq" class="nav-item">常見問題</a>
         <a href="#contact" class="nav-item">聯絡我們</a>
       </nav>
@@ -59,7 +58,8 @@
       <h2 class="reveal">用心陪伴，圓滿生命最後的旅程</h2>
       <p class="reveal reveal-delay-1">同仁社以溫馨、誠懇與專業的態度，執子之手，溫柔同行</p>
       <div class="hero-btns reveal reveal-delay-2">
-        <a href="tel:06-921300" class="btn btn-phone">📞 24小時撥打專線 (06-921300)</a>
+        <a href="tel:06-921300" class="btn btn-phone">📞 24小時專線 (06-921300)</a>
+        <a href="https://line.me/R/ti/p/@tongrenshe" target="_blank" class="btn btn-phone" style="background-color: #06C755; box-shadow: 0 4px 12px rgba(6, 199, 85, 0.3);">💬 LINE 線上諮詢</a>
         <a href="#estimator" class="btn btn-outline" style="color: white; border-color: white;">📋 服務費用線上估算</a>
       </div>
     </div>
@@ -433,57 +433,7 @@
     </div>
   </section>
 
-  <!-- 祝福與留言牆 -->
-  <section id="blessings" class="section">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2>思念與感謝牆</h2>
-        <p>在這裡留下您的片言隻字，寫下對家人的無限哀思，或寫下對同仁社服務的溫度回饋</p>
-      </div>
-      
-      <div class="blessing-container">
-        <!-- 留言表單 -->
-        <div class="blessing-form-box reveal">
-          <h3>寫下溫馨留言</h3>
-          <form id="blessing-form">
-            <div class="form-group">
-              <label for="blessing-name">您的稱呼 / 與逝者關係</label>
-              <input type="text" id="blessing-name" class="form-control" placeholder="例如：長子 陳先生 / 摯友 李小姐" required>
-            </div>
-            <div class="form-group">
-              <label>奉上致意鮮花</label>
-              <div class="flower-selector">
-                <div class="flower-option selected" data-flower="🌸">
-                  <span class="flower-emoji">🌸</span>
-                  <span class="flower-name">香水百合</span>
-                </div>
-                <div class="flower-option" data-flower="🌼">
-                  <span class="flower-emoji">🌼</span>
-                  <span class="flower-name">寧靜菊花</span>
-                </div>
-                <div class="flower-option" data-flower="🪷">
-                  <span class="flower-emoji">🪷</span>
-                  <span class="flower-name">功德蓮花</span>
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="blessing-msg">想說的話 / 追思文</label>
-              <textarea id="blessing-msg" rows="4" class="form-control" placeholder="寫下您的思念、祝福，或是對同仁社服務的誠懇評價..." required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary" style="width: 100%;">送出溫馨祝福</button>
-          </form>
-        </div>
-        
-        <!-- 留言牆展示 -->
-        <div class="blessing-wall-wrapper reveal reveal-delay-2">
-          <div class="blessing-wall" id="blessing-wall">
-            <!-- 留言卡片由 JS 動態生成 -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+
 
   <!-- 常見問題 (FAQs) -->
   <section id="faq" class="section section-bg-accent">
@@ -571,7 +521,15 @@
               <div class="contact-method-icon">📍</div>
               <div class="contact-method-text">
                 <h4>同仁社服務地址</h4>
-                <p>澎湖縣馬公市新生路 (鄰近澎湖縣殯儀館服務據點)</p>
+                <p>880澎湖縣馬公市東文里民富街42巷7號</p>
+              </div>
+            </div>
+
+            <div class="contact-method-item">
+              <div class="contact-method-icon" style="background-color: #06C755; color: white; border-color: #06C755;">💬</div>
+              <div class="contact-method-text">
+                <h4>LINE 官方線上諮詢</h4>
+                <p><a href="https://line.me/R/ti/p/@tongrenshe" target="_blank" style="color: #06C755; font-weight: 600;">點擊加入 LINE 好友</a> (ID: @tongrenshe)</p>
               </div>
             </div>
             
@@ -591,11 +549,11 @@
             <div class="map-pin">📍</div>
             <div class="map-info-card">
               <h4>同仁社禮儀公司</h4>
-              <p>澎湖縣馬公市 24小時溫馨守護</p>
+              <p>880澎湖縣馬公市東文里民富街42巷7號</p>
               <p style="margin-top: 4px; font-weight: 500;">電話：06-921300</p>
             </div>
             <p style="font-size: 0.8rem; margin-top: 20px; color: var(--text-muted);">
-              ( 鄰近殯儀館與馬公火葬場，備有治喪協調專用招待室 )
+              ( 24小時溫馨守護，備有治喪協調專用招待室 )
             </p>
           </div>
         </div>
@@ -609,10 +567,11 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <h2>同仁社禮儀公司</h2>
-          <p>以對待家人的心，圓滿生命最後的莊嚴謝幕。以誠懇的態度與合理的費用，為逝者締造 dignity，為生者撫平 grieves。</p>
+          <p>以對待家人的心，圓滿生命最後的莊嚴謝幕。以誠懇的態度與合理的費用，為逝者締造尊嚴，為生者撫平哀慟。</p>
           <div class="footer-brand-contact">
             <a href="tel:06-921300"><span>電話：</span>06-921300 (24h專線)</a>
-            <span style="font-size: 0.9rem;">地址：澎湖縣馬公市新生路</span>
+            <a href="https://line.me/R/ti/p/@tongrenshe" target="_blank" style="color: #06C755;"><span>LINE：</span>點擊加好友 (ID: @tongrenshe)</a>
+            <span style="font-size: 0.9rem;">地址：880澎湖縣馬公市東文里民富街42巷7號</span>
           </div>
         </div>
         
@@ -624,7 +583,6 @@
             <li><a href="#process">治喪流程</a></li>
             <li><a href="#coffeebar">追思咖啡吧</a></li>
             <li><a href="#estimator">溫馨費用試算</a></li>
-            <li><a href="#blessings">思念留言牆</a></li>
             <li><a href="#faq">常見問題</a></li>
           </ul>
         </div>
