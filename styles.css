@@ -362,6 +362,10 @@ img {
   align-items: center;
 }
 
+.coffee-grid {
+  grid-template-columns: 0.9fr 1.1fr;
+}
+
 .about-text h3 {
   font-size: 1.8rem;
   margin-bottom: 20px;
@@ -1305,6 +1309,7 @@ img {
     font-size: 2.8rem;
   }
   .about-grid,
+  .coffee-grid,
   .estimator-container,
   .blessing-container,
   .contact-grid {
