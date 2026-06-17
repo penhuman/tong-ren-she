@@ -1419,4 +1419,36 @@ img {
     grid-template-columns: 1fr;
     gap: 40px;
   }
+
+/* 基礎方案單選卡片樣式 */
+.base-pkg-item {
+  grid-column: 1 / -1;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 20px !important;
+  gap: 15px;
 }
+
+.base-pkg-item .option-checkbox {
+  align-items: flex-start !important;
+  line-height: 1.6;
+}
+
+.base-pkg-item .option-checkbox input {
+  margin-top: 6px;
+}
+
+.base-pkg-item .option-checkbox span strong {
+  display: block;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.base-pkg-item .option-price {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-top: 3px;
+  white-space: nowrap;
+}
+

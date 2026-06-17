@@ -95,16 +95,23 @@ function initEstimator() {
   const triggers = document.querySelectorAll('.calc-trigger');
   const selectedListContainer = document.getElementById('selected-items');
   const totalPriceEl = document.getElementById('total-price');
+  const baseRadios = document.querySelectorAll('input[name="base-package"]');
 
-  // 固定基礎項目 (不會變動的底價)
-  const baseItems = [
-    { name: '基礎接運與壽衣組', price: 38000 },
-    { name: '靈堂與蓮位設立', price: 12000 }
-  ];
+  // 監聽基礎單選方案的變動
+  baseRadios.forEach(radio => {
+    radio.addEventListener('change', () => {
+      // 移除所有基礎方案卡片的高亮選取狀態
+      document.querySelectorAll('.base-pkg-item').forEach(item => {
+        item.classList.remove('selected');
+      });
+      // 幫目前被選中的基礎方案卡片加上高亮
+      radio.closest('.base-pkg-item').classList.add('selected');
+      calculateTotal();
+    });
+  });
 
-  // 監聽選項點擊，切換 selected 樣式與觸加計算
+  // 監聽加值複選選項點擊，切換 selected 樣式與觸發計算
   triggers.forEach(checkbox => {
-    // 當前 checkbox 外層 label
     const optionCard = checkbox.closest('.option-item');
     
     checkbox.addEventListener('change', () => {
@@ -117,33 +124,63 @@ function initEstimator() {
     });
   });
 
-  // 點擊 label 本體 (除了 checkbox 本身) 的輔助處理
+  // 點擊卡片本體 (除了 input 本身) 的輔助點選處理
   const optionItems = document.querySelectorAll('.option-item');
   optionItems.forEach(card => {
     card.addEventListener('click', (e) => {
       const checkbox = card.querySelector('input[type="checkbox"]');
-      if (checkbox && checkbox.disabled) return; // 基礎固定項目不可點選
+      const radio = card.querySelector('input[type="radio"]');
       
-      // 避免與 checkbox 本身的 change 事件衝突
-      if (e.target !== checkbox && !checkbox.contains(e.target)) {
-        checkbox.checked = !checkbox.checked;
-        // 手動觸發 change 事件
-        checkbox.dispatchEvent(new Event('change'));
+      if (checkbox) {
+        if (checkbox.disabled) return;
+        if (e.target !== checkbox && !checkbox.contains(e.target)) {
+          checkbox.checked = !checkbox.checked;
+          checkbox.dispatchEvent(new Event('change'));
+        }
+      } else if (radio) {
+        if (e.target !== radio && !radio.contains(e.target)) {
+          radio.checked = true;
+          radio.dispatchEvent(new Event('change'));
+        }
+      }
+    });
+  });
+
+  // 點擊主打方案區的「選擇此方案並自訂項目」按鈕
+  const selectPkgBtns = document.querySelectorAll('.select-pkg-btn');
+  selectPkgBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const pkgId = btn.getAttribute('data-pkg-id');
+      const radioEl = document.getElementById(pkgId);
+      if (radioEl) {
+        radioEl.checked = true;
+        // 觸發變動事件以更新 UI 與價格
+        radioEl.dispatchEvent(new Event('change'));
+        
+        // 平滑滾動到試算器區塊
+        const estimatorSection = document.getElementById('estimator');
+        if (estimatorSection) {
+          estimatorSection.scrollIntoView({ behavior: 'smooth' });
+        }
       }
     });
   });
 
   // 加總與更新右側 UI 渲染
   function calculateTotal() {
-    let total = 50000; // 基礎項目 $38,000 + $12,000
+    // 獲取被選中的基礎方案
+    const selectedBasePkg = document.querySelector('input[name="base-package"]:checked');
+    const basePrice = parseInt(selectedBasePkg.value, 10);
+    const baseName = selectedBasePkg.getAttribute('data-name');
     
-    // 清空並重新加入基礎項目
+    let total = basePrice;
+    
+    // 清空並重新加入方案底價
     selectedListContainer.innerHTML = '';
-    baseItems.forEach(item => {
-      addSummaryRow(item.name, item.price);
-    });
+    addSummaryRow(baseName, basePrice);
 
-    // 巡檢所有被勾選的自選項目
+    // 巡檢所有被勾選的自選加值項目
     triggers.forEach(checkbox => {
       if (checkbox.checked) {
         const name = checkbox.getAttribute('data-name');
@@ -153,7 +190,7 @@ function initEstimator() {
       }
     });
 
-    // 格式化輸出金錢 (加上千分位)
+    // 格式化輸出金錢
     totalPriceEl.textContent = `NT$ ${total.toLocaleString()}`;
   }
 
